@@ -12,6 +12,8 @@ class Logic {
         sf::Event ev;
         sf::RectangleShape box;
         sf::CircleShape enemies[50];
+	    // std::vector<sf::CircleShape> enemies;
+
 
         void initVariables();
         void initWindow();
@@ -26,5 +28,6 @@ class Logic {
         void renderBox();
         void drawEnemies();
         void renderEnemies();
+        void updateEnemies();
 
 };
