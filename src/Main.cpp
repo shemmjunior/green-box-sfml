@@ -4,6 +4,7 @@
 
 int main()
 {
+    srand(time(0));
     // Construct Logic
     Logic logic;
 

@@ -15,6 +15,7 @@ Logic::Logic() {
     this->initVariables();
     this->initWindow();
     this->drawBox();
+	this->drawEnemies();
 }
 
 // Destructor
@@ -31,11 +32,26 @@ void Logic::drawBox() {
     this->box.setPosition(static_cast<float>(rand() % static_cast<int>(this->window->getSize().x - this->box.getSize().x)),0.f);
     this->box.setSize(sf::Vector2f(100.f, 100.f));
 	this->box.setScale(sf::Vector2f(0.5f, 0.5f));
-	this->box.setFillColor(sf::Color::Cyan);
+	this->box.setFillColor(sf::Color::Green);
+}
+
+void Logic::drawEnemies() {
+	for (int i = 0; i < 10; i++) {
+    this->enemies[i].setRadius(rand() % 50 + 5);
+    this->enemies[i].setPosition(static_cast<float>(rand() % static_cast<int>(this->window->getSize().x - this->box.getSize().x)), rand() % static_cast<int>(this->window->getSize().y - this->box.getSize().y));
+    this->enemies[i].setFillColor(sf::Color::Red);
+
+	}
 }
 
 void Logic::renderBox() {
     this->window->draw(this->box);
+}
+
+void Logic::renderEnemies() {
+	for(auto& e : this->enemies) {
+		this->window->draw(e);
+	}
 }
 
 void Logic::update() {
@@ -45,6 +61,7 @@ void Logic::update() {
 void Logic::render() {
     this->window->clear();
 	this->renderBox();
+	this->renderEnemies();
 	this->window->display();
 }
 
@@ -60,7 +77,16 @@ void Logic::pollEvent()
 		case sf::Event::KeyPressed:
 			if (this->ev.key.code == sf::Keyboard::Escape)
 				this->window->close();
+			if (this->ev.key.code == sf::Keyboard::Up)
+				this->box.move(0,-10);
+			if (this->ev.key.code == sf::Keyboard::Down)
+				this->box.move(0,10);
+			if (this->ev.key.code == sf::Keyboard::Left)
+				this->box.move(-10,0);
+			if (this->ev.key.code == sf::Keyboard::Right)
+				this->box.move(10,0);
 			break;
-		}
+		
 	}
+}
 }

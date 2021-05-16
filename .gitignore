@@ -1,0 +1,4 @@
+#Igore
+/main.exe
+/src/Main.o
+/src/Logic.o

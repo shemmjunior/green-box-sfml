@@ -11,6 +11,7 @@ class Logic {
         sf::RenderWindow* window;
         sf::Event ev;
         sf::RectangleShape box;
+        sf::CircleShape enemies[50];
 
         void initVariables();
         void initWindow();
@@ -23,5 +24,7 @@ class Logic {
         void render();
         void drawBox();
         void renderBox();
+        void drawEnemies();
+        void renderEnemies();
 
 };
