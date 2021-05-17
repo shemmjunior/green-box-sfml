@@ -14,6 +14,9 @@ class Logic {
 	    std::vector<sf::RectangleShape> enemies;
         sf::RectangleShape green;
 
+        float spawnTimer;
+        float spawnTimerMax;
+
         void initVariables();
         void initWindow();
     public:

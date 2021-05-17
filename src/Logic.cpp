@@ -2,6 +2,9 @@
 
 void Logic::initVariables() {
     this->window = nullptr;
+	this->spawnTimerMax = 1000.f;
+	this->spawnTimer = this->spawnTimerMax;
+
 }
 
 void Logic::initWindow() {
@@ -40,7 +43,7 @@ void Logic::renderGreen() {
 }
 
 void Logic::drawEnemies() {
-		this->box.setSize(sf::Vector2f(100.f, 100.f));
+		this->box.setSize(sf::Vector2f(10.f, 10.f));
 		this->box.setScale(sf::Vector2f(0.5f, 0.5f));
 		this->box.setPosition(static_cast<float>(rand() % static_cast<int>(this->window->getSize().x - this->box.getSize().x)), rand() % static_cast<int>(this->window->getSize().y - this->box.getSize().y));
 		this->box.setFillColor(sf::Color::Red);
@@ -50,8 +53,15 @@ void Logic::drawEnemies() {
 
 
 void Logic::updateEnemies() {
-	if (this->enemies.size() < 30) {
-		this->drawEnemies();
+	if (this->enemies.size() < 100) {
+			this->drawEnemies();
+
+		// if (this->spawnTimer >= this->spawnTimerMax) {
+		// 	this->drawEnemies();
+		// 	this->spawnTimer = 0.f;
+		// } else {
+		// 	this->spawnTimer += 1.f;
+		// }
 	}
 	// for(auto& e : this->enemies) {
 	// 	e.move(0.f, 1.f);
@@ -111,6 +121,11 @@ void Logic::pollEvent()
 			}
 			if (this->ev.key.code == sf::Keyboard::Right) {
 				this->green.move(10,0);
+			}
+			if (this->ev.key.code == sf::Keyboard::Space) {
+				this->green.move(0,-50);
+				// this->green.move(0,50);
+
 			}
 			break;
 		
